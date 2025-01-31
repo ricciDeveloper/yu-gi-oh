@@ -21,7 +21,7 @@ Bem-vindo ao **Yu-Gi-Oh! Jo-Ken-Po**! 🌟 Um mini game inspirado no universo de
 
 1️⃣ **Escolha uma carta** na parte inferior da tela. 2️⃣ **Clique sobre ela** para lançá-la no campo de batalha. 3️⃣ **Aguarde** a jogada do computador. 4️⃣ **O resultado será exibido** com base na regra do Jo-Ken-Po:
 
--   🪨 Pedra (Rock) vence Tesoura (Scissors).
+-   ◽ Pedra (Rock) vence Tesoura (Scissors).
 
 -   📄 Papel (Paper) vence Pedra (Rock).
 

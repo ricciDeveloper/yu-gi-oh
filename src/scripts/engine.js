@@ -13,15 +13,18 @@ const state = {
         player: document.getElementById("player-field-cards"),
         computer: document.getElementById("computer-field-cards"),
     },
+    playerSides : { 
+        player1 : "player-cards",
+        player1BOX : document.querySelector("#player-cards"),
+        computer: "computer-cards",
+        computerBOX:  document.querySelector("#computer-cards"),
+    },
     actions: {
         button: document.getElementById("next-duel")
     }
 };
 
-const playerSides = { 
-    player1 : "player-cards",
-    computer: "computer-cards",
-}
+
 const pathImages = "./src/assets/icons/";
 const cardData = [
     {
@@ -30,7 +33,7 @@ const cardData = [
         type: "Paper",
         img: `${pathImages}dragon.png`,
         WinOf: [1],
-        LoseO: [2],
+        LoseOf: [2],
     },
     {
         id: 1,
@@ -38,7 +41,7 @@ const cardData = [
         type: "Rock",
         img: `${pathImages}magician.png`,
         WinOf: [2],
-        LoseO: [0],
+        LoseOf: [0],
     },
     {
         id: 2,
@@ -46,7 +49,7 @@ const cardData = [
         type: "Scissors",
         img: `${pathImages}exodia.png`,
         WinOf: [0],
-        LoseO: [1],
+        LoseOf: [1],
     },
 ];
 async function createCardImage(IdCard, fieldSide) {
@@ -56,7 +59,7 @@ async function createCardImage(IdCard, fieldSide) {
     cardImage.setAttribute("data-id", IdCard);
     cardImage.classList.add("card");
 
-    if(fieldSide === playerSides.player1){
+    if(fieldSide === state.playerSides.player1){
         cardImage.addEventListener("mouseover", () => {
             drawSelectCard(IdCard);
         })
@@ -74,6 +77,61 @@ async function getRandomCardId(){
     const randomIndex = Math.floor(Math.random() * cardData.length);
     return cardData[randomIndex].id;
 }
+async function setCardsField(cardId) {
+    await removeAllCardsImages();
+
+    let computerCardId = await getRandomCardId();
+    state.fieldCards.computer.style.display = "block"; 
+    state.fieldCards.player.style.display = "block";
+
+    state.fieldCards.computer.src = cardData[computerCardId].img;
+    state.fieldCards.player.src = cardData[cardId].img;
+
+
+    let duelResults = await checkDuelResults(cardId, computerCardId);
+    await drawButton(duelResults);
+}
+
+async function checkDuelResults(playerCardId, computerCardId) {
+    let duelResults = "draw";
+
+    let playerCard = cardData[playerCardId];
+
+    if (playerCard.WinOf.includes(computerCardId)) {
+        duelResults = "win";
+        await playAudio(duelResults);
+        state.score.playerScore++;
+    }
+
+    else if (playerCard.LoseOf.includes(computerCardId)) {
+        duelResults = "lose";
+        await playAudio(duelResults);
+        state.score.computerScore++;
+    }
+
+    await updateScore();
+
+    return  duelResults;
+}
+async function updateScore() {
+    state.score.scoreBox.innerText = `Win: ${state.score.playerScore} | Lose: ${state.score.computerScore}`;
+}
+
+async function drawButton(text) {
+    state.actions.button.innerText = text.toUpperCase();
+    state.actions.button.style.display = "block";
+}
+
+async function removeAllCardsImages() {
+    let { computerBOX, player1BOX } = state.playerSides;
+    let imgElements = computerBOX.querySelectorAll("img");
+    imgElements.forEach((img) => img.remove());
+
+
+
+    imgElements = player1BOX.querySelectorAll("img");
+    imgElements.forEach((img) => img.remove());
+}
 
 async function drawSelectCard(index) {
     state.cardSprites.avatar.src = cardData[index].img;
@@ -90,11 +148,29 @@ async function drawCards(cardNumbers, fieldSide){
 
     }
 }
+
+
+async function resetDuel() {
+    state.cardSprites.avatar.src = "";
+    state.actions.button.style.display = "none";
+    
+    state.fieldCards.player.style.display = "none";
+    state.fieldCards.computer.style.display = "none";
+
+
+    init();
+}
+
+async function playAudio(status) {
+    const audio = new Audio(`./src/assets/audios/${status}.wav`);
+    try {
+        audio.play();
+    } catch {}
+}
 function init(){
-    drawCards(5, playerSides.player1);
-    drawCards(5, playerSides.computer);
+    drawCards(5, state.playerSides.computer);
+    drawCards(5, state.playerSides.player1);
 }
 
 init();
 
-//continuar com a feat de setcards

@@ -25,7 +25,9 @@ Bem-vindo ao **Yu-Gi-Oh! Jo-Ken-Po**! 🌟 Um mini game inspirado no universo de
 
 -   📄 Papel (Paper) vence Pedra (Rock).
 
--   ✂️ Tesoura (Scissors) vence Papel (Paper). 5️⃣ **O placar será atualizado** e você pode iniciar um novo duelo!
+-   ✂️ Tesoura (Scissors) vence Papel (Paper). 
+
+5️⃣ **O placar será atualizado** e você pode iniciar um novo duelo!
 
 * * * * *
 
@@ -74,7 +76,7 @@ Bem-vindo ao **Yu-Gi-Oh! Jo-Ken-Po**! 🌟 Um mini game inspirado no universo de
 📢 Contato
 ----------
 
-📌 Criado por: **João Victor Ricci** (Juuvito) 👨‍💻\
+📌 **João Victor Ricci** 👨‍💻\
 🔗 [LinkedIn](https://www.linkedin.com/in/joaoriccideveloper/)\
 🐱 [GitHub](https://github.com/ricciDeveloper)
 

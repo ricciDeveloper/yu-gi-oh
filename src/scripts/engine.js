@@ -1,6 +1,6 @@
 const state = {
 
-    
+
     score:{
         playerScore: 0,
         computerScore: 0,
@@ -311,6 +311,10 @@ function init(){
     drawCards(5, state.playerSides.computer);
 
     drawCards(5, state.playerSides.player1);
+    
+    const bgm = document.getElementById("bgm");
+
+    bgm.play();
 }
 
 

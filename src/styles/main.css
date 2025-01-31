@@ -1,5 +1,5 @@
 body{
-    cursor: url("/js-yugioh-assets/src/assets/cursor/yugicursor.png"), default;
+    cursor: url("../assets/cursor/yugicursor.png"), default;
 
 }
 
@@ -8,7 +8,7 @@ a,
 img:hover,
 button:hover,
 a:hover{
-    cursor: url("/js-yugioh-assets/src/assets/cursor/yamiyugicursorGLOW.png"), default;
+    cursor: url("../assets/cursor/yamiyugicursorGLOW.png"), default;
 }
 .bg-video{
     position: absolute;
